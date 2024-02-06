@@ -27,7 +27,7 @@
 #
 #
 # Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (c) 2022, 2024 Qualcomm Innovation Center, Inc. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted (subject to the limitations in the
@@ -134,8 +134,6 @@ on init && property:ro.boot.mode=charger
     wait_for_prop vendor.all.modules.ready 1
     mount_all /vendor/etc/charger_fw_fstab.qti --early
     start vendor.pd_mapper
-    wait /sys/kernel/boot_adsp/boot
-    write /sys/kernel/boot_adsp/boot 1
 
 on charger
     start vendor.power_off_alarm
