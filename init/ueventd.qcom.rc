@@ -629,3 +629,5 @@ subsystem mem_buf_vm
 #power_state device node
 /dev/power_state           0660   system      system
 
+# IPA Events
+/dev/ipa_events         0660   radio      radio
