@@ -148,6 +148,7 @@ vendor.camera.aux.packageexcludelist=org.telegram.messenger,org.thunderdog.chall
 
 # Chipset
 ro.soc.manufacturer=QTI
+ro.vendor.board.family=f-canoe
 
 # Crypto
 ro.crypto.metadata_init_delete_all_keys.enabled=true
