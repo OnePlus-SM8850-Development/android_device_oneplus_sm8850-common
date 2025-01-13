@@ -138,6 +138,8 @@ subsystem mem_buf_vm
 /dev/btspi                0660   bluetooth  bluetooth
 /dev/bt_cp_ctrl           0660   bluetooth  system
 /dev/btfmcodec_dev        0660   bluetooth  system
+/dev/threadpower          0660   thread_network  system
+/dev/spithrq              0660   thread_network  system
 
 #permissions for pta
 /dev/pta                  0660   system     system
