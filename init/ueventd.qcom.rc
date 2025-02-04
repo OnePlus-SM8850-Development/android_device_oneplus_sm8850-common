@@ -480,6 +480,10 @@ subsystem mem_buf_vm
 #Haptics class devices
 /sys/class/qcom-haptics    visense_enabled     0400    system    system
 /sys/class/qcom-haptics    primitive_duration  0600    system    system
+/sys/class/qcom-haptics    v_gain_error        0440    system    audio
+/sys/class/qcom-haptics    i_gain_error        0440    system    audio
+/sys/class/qcom-haptics    lra_frequency_hz    0440    system    audio
+/sys/class/qcom-haptics    lra_f0_cal_in_play  0440    system    audio
 
 # NPU device
 /dev/msm_npu             0644   system     system
