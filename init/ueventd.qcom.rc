@@ -236,6 +236,8 @@ subsystem mem_buf_vm
 /dev/fastrpc-adsp-secure  0644   system     system
 /dev/fastrpc-cdsp-secure  0644   system     system
 /dev/fastrpc-sdsp-secure  0644   system     system
+/dev/fastrpc-nsp*         0644   system     system
+/dev/fastrpc-lpass*       0644   system     system
 /dev/system_health_monitor 0644  radio      system
 /dev/mdss_rotator         0664   system     system
 /dev/spec_sync            0660   system     system
@@ -631,3 +633,20 @@ subsystem mem_buf_vm
 
 # IPA Events
 /dev/ipa_events         0660   radio      radio
+
+# Fastrpc domain  sysfs attributes
+/sys/kernel/fastrpc/nsp* name               0444   root     system
+/sys/kernel/fastrpc/nsp* domain_id          0444   root     system
+/sys/kernel/fastrpc/nsp* instance_id        0444   root     system
+/sys/kernel/fastrpc/nsp* status             0444   root     system
+/sys/kernel/fastrpc/nsp* type               0444   root     system
+/sys/kernel/fastrpc/nsp* legacy_name        0444   root     system
+/sys/kernel/fastrpc/nsp* legacy_id          0444   root     system
+
+/sys/kernel/fastrpc/lpass* name               0444   root     system
+/sys/kernel/fastrpc/lpass* domain_id          0444   root     system
+/sys/kernel/fastrpc/lpass* instance_id        0444   root     system
+/sys/kernel/fastrpc/lpass* status             0444   root     system
+/sys/kernel/fastrpc/lpass* type               0444   root     system
+/sys/kernel/fastrpc/lpass* legacy_name        0444   root     system
+/sys/kernel/fastrpc/lpass* legacy_id          0444   root     system
