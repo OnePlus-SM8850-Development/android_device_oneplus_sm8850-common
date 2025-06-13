@@ -116,6 +116,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('vendor.qti.hardware.display.config-V11-ndk.so', 'vendor.qti.hardware.display.config-V13-ndk.so'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+    'vendor/usr/keylayout/gpio-keys.kl': blob_fixup()
+        .add_line_if_missing('key 735   ASSIST'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
