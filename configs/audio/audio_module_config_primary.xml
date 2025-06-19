@@ -10,19 +10,29 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
         output flags-->
         <!-- start of source mixports-->
         <mixPort name="low_latency_out" role="source" flags="FAST PRIMARY" maxOpenCount="2" maxActiveCount="2">
+            <!-- #ifndef OPLUS_FEATURE_PLAYBACK_24BIT
+            // Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Modify for support playback with 24bits
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
+            #else /* OPLUS_FEATURE_PLAYBACK_24BIT */-->
+            <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_24_BIT" />
+            <!-- #endif OPLUS_FEATURE_PLAYBACK_24BIT -->
         </mixPort>
         <mixPort name="raw_out" role="source" flags="FAST RAW">
-            <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
+            <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_24_BIT" />
         </mixPort>
         <mixPort name="haptics_out" role="source" flags="FAST">
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO_HAPTIC_A" formatType="PCM" pcmType="INT_16_BIT" />
         </mixPort>
         <mixPort name="deep_buffer_out" role="source" flags="DEEP_BUFFER" recommendedMuteDurationMs="300">
+            <!-- #ifndef OPLUS_FEATURE_PLAYBACK_24BIT
+            // Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Modify for support playback with 24bits
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="FIXED_Q_8_24" />
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_24_BIT" />
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_32_BIT" />
+            #else /* OPLUS_FEATURE_PLAYBACK_24BIT */ -->
+            <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_24_BIT" />
+            <!-- #endif OPLUS_FEATURE_PLAYBACK_24BIT -->
         </mixPort>
         <mixPort name="mmap_no_irq_out" role="source" flags="DIRECT MMAP_NOIRQ">
             <profile samplingRates="48000" channelLayouts="LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
@@ -41,11 +51,20 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
             <profile samplingRates="48000" channelLayouts="LAYOUT_7POINT1POINT4" formatType="PCM" pcmType="INT_16_BIT" />
         </mixPort>
         <mixPort name="direct_pcm_out" role="source" flags="DIRECT" recommendedMuteDurationMs="160">
+             <!-- #ifdef OPLUS_ARCH_EXTENDS -->
+             <!-- fix XTS issue alm#7507266  -->
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="FIXED_Q_8_24" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="INT_24_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="INT_32_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="FLOAT_32_BIT" />
+             <!-- #else /* OPLUS_ARCH_EXTENDS */
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="INT_16_BIT" />
-            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000 352800 384000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="FIXED_Q_8_24" />
-            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000 352800 384000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="INT_24_BIT" />
-            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000 352800 384000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="INT_32_BIT" />
-            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000 352800 384000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="FLOAT_32_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="FIXED_Q_8_24" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="INT_24_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="INT_32_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 64000 88200 96000 128000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_QUAD LAYOUT_PENTA LAYOUT_5POINT1 LAYOUT_6POINT1 LAYOUT_7POINT1" formatType="PCM" pcmType="FLOAT_32_BIT" />
+             -->
         </mixPort>
         <mixPort name="compress_offload_out" role="source" flags="DIRECT COMPRESS_OFFLOAD NON_BLOCKING GAPLESS_OFFLOAD">
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000" channelLayouts="LAYOUT_STEREO LAYOUT_MONO" formatType="NON_PCM" encoding="audio/mpeg" />
@@ -78,13 +97,16 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
 
         <!-- start of sink mixports-->
         <mixPort name="primary_in" role="sink" maxOpenCount="2" maxActiveCount="2">
-            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_FRONT_BACK" formatType="PCM" pcmType="INT_16_BIT" />
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_TRI LAYOUT_FRONT_BACK" formatType="PCM" pcmType="INT_16_BIT" />
         </mixPort>
+        <!-- #ifndef OPLUS_BUG_STABILITY
+        // Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Remove compress-input avoid camera record stop fail
         <mixPort name="compress_in" role="sink" flags="DIRECT">
             <profile name="compress-capture-AAC-LC" samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000" channelLayouts="LAYOUT_STEREO LAYOUT_MONO LAYOUT_FRONT_BACK" formatType="NON_PCM" encoding="audio/mp4a.40.02" />
             <profile name="compress-capture-AAC-HE-V1" samplingRates="24000 32000 44100 48000" channelLayouts="LAYOUT_STEREO LAYOUT_MONO LAYOUT_FRONT_BACK" formatType="NON_PCM" encoding="audio/aac-adts.05" />
             <profile name="compress-capture-AAC-HE-V2" samplingRates="24000 32000 44100 48000" channelLayouts="LAYOUT_STEREO" formatType="NON_PCM" encoding="audio/aac-adts.29" />
         </mixPort>
+        #endif OPLUS_BUG_STABILITY -->
         <mixPort name="fast_input" role="sink" flags="FAST">
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_2POINT1 LAYOUT_2POINT0POINT2 LAYOUT_3POINT0POINT2 LAYOUT_5POINT1" channelMasks="INDEX_MASK_3" formatType="PCM" pcmType="INT_16_BIT" />
         </mixPort>
@@ -98,9 +120,26 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
         <mixPort name="usb_surround_sound_input" role="sink">
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 88200 96000 176400 192000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO LAYOUT_FRONT_BACK LAYOUT_5POINT1" channelMasks="INDEX_MASK_3 INDEX_MASK_4 INDEX_MASK_6 INDEX_MASK_8" formatType="PCM" pcmType="INT_16_BIT" />
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 88200 96000 176400 192000" channelLayouts="LAYOUT_5POINT1" channelMasks="INDEX_MASK_6 INDEX_MASK_8" formatType="PCM" pcmType="INT_32_BIT" />
+            <!-- #ifndef OPLUS_BUG_STABILITY
+            // Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, case:2588000, CR-3089619-gerrit-3904059-ps-3.patch fix USB Audio Peripheral Record Test issue
             <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 88200 96000 176400 192000" channelLayouts="LAYOUT_5POINT1" channelMasks="INDEX_MASK_6 INDEX_MASK_8" formatType="PCM" pcmType="FLOAT_32_BIT" />
+            #else /* OPLUS_BUG_STABILITY */ -->
+            <profile samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000 88200 96000 176400 192000" channelLayouts="LAYOUT_STEREO LAYOUT_5POINT1" channelMasks="INDEX_MASK_2 INDEX_MASK_6 INDEX_MASK_8" formatType="PCM" pcmType="FLOAT_32_BIT" />
+            <!-- #endif OPLUS_BUG_STABILITY -->
         </mixPort>
+        <!-- #ifdef OPLUS_FEATURE_AEC_RECORD -->
+        <!-- Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Add for 4ch aec, add 48K for 4MIC mmi 0xEC1 test -->
+        <mixPort name="record_4ch_aec" role="sink">
+            <profile samplingRates="16000 48000" channelLayouts="LAYOUT_2POINT0POINT2" formatType="PCM" pcmType="INT_16_BIT" />
+        </mixPort>
+        <!-- #endif OPLUS_FEATURE_AEC_RECORD -->
+        <!-- #ifdef OPLUS_FEATURE_OCAR_AUDIO -->
+        <!-- Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Modify for support call record in ocar mode -->
+        <!--
         <mixPort name="voice_rx" role="sink">
+        -->
+        <mixPort name="voice_rx" role="sink" maxOpenCount="2" maxActiveCount="2">
+        <!-- #endif OPLUS_FEATURE_OCAR_AUDIO -->
             <profile samplingRates="8000 16000 48000" channelLayouts="LAYOUT_MONO LAYOUT_STEREO" formatType="PCM" pcmType="INT_16_BIT" />
         </mixPort>
         <mixPort name="mmap_no_irq_in" role="sink" maxOpenCount="1" maxActiveCount="1" flags="MMAP_NOIRQ">
@@ -260,16 +299,25 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
         <route type="mix" sink="ip_out" sources="low_latency_out,deep_buffer_out,direct_pcm_out,compress_offload_out,haptics_out" />
 
         <route type="mix" sink="fm_out" sources="low_latency_out" />
-        <!-- input routes -->
+        <route type="mix" sink="primary_in" sources="built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,telephony_rx,bt_a2dp_mic,echo_reference_mic,bt_le_mic,ip_input_device" />
+        <!--
         <route type="mix" sink="primary_in" sources="built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,fm_tuner_mic,telephony_rx,bt_a2dp_mic,echo_reference_mic,bt_le_mic,proxy_input_device,ip_input_device" />
+        -->
         <route type="mix" sink="fast_input" sources="built_in_mic,built_in_back_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,wired_headset_mic,proxy_input_device,ip_input_device" />
         <route type="mix" sink="fast_raw_input" sources="built_in_mic,built_in_back_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,wired_headset_mic,proxy_input_device,ip_input_device" />
+        <!-- #ifndef OPLUS_BUG_STABILITY
+        // Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Remove compress-input avoid camera record stop fail
         <route type="mix" sink="compress_in" sources="built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,bt_a2dp_mic,echo_reference_mic,bt_le_mic,proxy_input_device,ip_input_device" />
+        #endif OPLUS_BUG_STABILITY -->
         <route type="mix" sink="telephony_tx" sources="voice_tx,in_call_music,built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,bt_a2dp_mic,echo_reference_mic,bt_le_mic,usb_mic,usb_headset_mic" />
         <route type="mix" sink="mmap_no_irq_in" sources="built_in_mic,built_in_back_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,wired_headset_mic" />
         <route type="mix" sink="voip_record" sources="built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,bt_a2dp_mic,echo_reference_mic,bt_le_mic,ip_input_device" />
         <route type="mix" sink="hotword_input" sources="built_in_mic,built_in_back_mic,wired_headset_mic,bt_sco_headset_mic,usb_mic,usb_headset_mic,bt_a2dp_mic,echo_reference_mic,bt_le_mic,proxy_input_device" />
         <route type="mix" sink="usb_surround_sound_input" sources="usb_mic,usb_headset_mic" />
+        <!--#ifdef OPLUS_FEATURE_AEC_RECORD-->
+        <!-- Jianfeng.Qiu@MULTIMEDIA.AUDIODRIVER.HAL, 2024/05/15, Add for 4ch aec -->
+        <route type="mix" sink="record_4ch_aec" sources="built_in_mic,built_in_back_mic" />
+        <!-- #endif OPLUS_FEATURE_AEC_RECORD -->
         <route type="mix" sink="voice_rx" sources="telephony_rx" />
     </routes>
 </module>
