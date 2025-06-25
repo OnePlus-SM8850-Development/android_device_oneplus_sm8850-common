@@ -14,6 +14,12 @@ cc_library_static {
 }
 
 prebuilt_etc {
+    name: "charger_fstab.qcom",
+    src: "charger_fstab.qcom",
+    vendor: true,
+}
+
+prebuilt_etc {
     name: "fstab.qcom",
     src: "fstab.qcom",
     vendor: true,
