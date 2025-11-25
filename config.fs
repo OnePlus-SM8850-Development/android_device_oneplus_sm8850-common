@@ -71,13 +71,13 @@ caps: SYS_ADMIN SYS_NICE WAKE_ALARM
 mode: 0755
 user: AID_VENDOR_THALES_STRONGBOX
 group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE
+caps: SYS_ADMIN SYS_NICE WAKE_ALARM
 
 [vendor/bin/hw/android.hardware.weaver-service.thales]
 mode: 0755
 user: AID_VENDOR_THALES_WEAVER
 group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE
+caps: SYS_ADMIN SYS_NICE WAKE_ALARM
 
 [vendor/bin/hw/android.hardware.authsecret-service.thales-qti]
 mode: 0755
