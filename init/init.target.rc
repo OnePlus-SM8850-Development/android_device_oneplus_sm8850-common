@@ -164,3 +164,7 @@ service fan_control_turn_off /vendor/bin/fan_service 0
     user root
     disabled
     oneshot
+
+on shutdown
+    write /sys/kernel/qcom_rproc/shutdown_in_progress 1
+    stop vendor.per_proxy
