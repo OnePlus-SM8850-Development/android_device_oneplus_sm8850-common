@@ -241,6 +241,9 @@ debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 vendor.media.omx=0
 
+# MTE
+ro.arm64.memtag.bootctl_supported=1
+
 # Pasr
 vendor.pasr.activemode.enabled=true
 

@@ -33,7 +33,6 @@ import /vendor/etc/init/hw/init.qti.kernel.rc
 
 on early-init
     write /proc/sys/kernel/printk_devkmsg ratelimited
-    export MEMTAG_OPTIONS off
 
 on init
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
