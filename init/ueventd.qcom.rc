@@ -653,6 +653,9 @@ subsystem mem_buf_vm
 # IPA Events
 /dev/ipa_events         0660   radio      radio
 
+#power_state device node
+/dev/power_state           0660   system      system
+
 # Fastrpc domain  sysfs attributes
 /sys/kernel/fastrpc/nsp* name               0444   root     system
 /sys/kernel/fastrpc/nsp* domain_id          0444   root     system
