@@ -23,9 +23,7 @@ using android::fs_mgr::GetKernelCmdline;
 using android::init::InitPropertySet;
 
 namespace {
-constexpr const char* kCmdlineRegion = "oplus_region";
-constexpr const char* kCmdlinePrjName = "oplusboot.prjname";
-
+constexpr std::string kCmdlineRegion = "oplus_region";
 const std::unordered_map<int, std::string> kRegionMap = {
         {27, "IN"},
         {68, "EU"},
@@ -53,37 +51,10 @@ void vendor_process_bootenv() {
         return;
     }
 
-    if (region_id != 0) {
-        auto it = kRegionMap.find(region_id);
-        if (it == kRegionMap.end()) {
-            LOG(ERROR) << "Unexpected region ID: " << region_id;
-        } else {
-            InitPropertySet("ro.boot.hardware.revision", it->second);
-        }
+    auto it = kRegionMap.find(region_id);
+    if (it == kRegionMap.end()) {
+        LOG(ERROR) << "Unexpected region ID: " << region_id;
     } else {
-        if (!GetKernelCmdline(kCmdlinePrjName, &buf)) {
-            LOG(ERROR) << kCmdlinePrjName << " not found in /proc/cmdline";
-            return;
-        }
-
-        int prj_id;
-        if (!ParseInt(buf, &prj_id)) {
-            LOG(ERROR) << "Project ID [" << buf << "] is invalid";
-            return;
-        }
-
-        switch (prj_id) {
-            case 23926:
-            case 23927:
-                InitPropertySet("ro.boot.hardware.revision", "CN");
-                break;
-            case 23976:
-            case 23978:
-                InitPropertySet("ro.boot.hardware.revision", "GLO");
-                break;
-            default:
-                LOG(ERROR) << "Unexpected project ID: " << prj_id;
-                break;
-        }
+        InitPropertySet("ro.boot.hardware.revision", it->second);
     }
 }
