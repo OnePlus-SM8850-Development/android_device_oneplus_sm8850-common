@@ -57,7 +57,7 @@ PRODUCT_PACKAGES += \
     libvolumelistener \
     sound_trigger.primary.pineapple
 
-AUDIO_HAL_DIR := hardware/qcom-caf/sm8650/audio/primary-hal
+AUDIO_HAL_DIR := hardware/qcom-caf/sm8850/audio/primary-hal
 CONFIG_HAL_SRC_DIR := $(AUDIO_HAL_DIR)/configs/pineapple
 CONFIG_PAL_SRC_DIR := $(AUDIO_HAL_DIR)/../pal/configs/pineapple
 QCV_FAMILY_SKUS := pineapple cliffs
@@ -237,7 +237,7 @@ endif
 PRODUCT_ENABLE_UFFD_GC := true
 
 PRODUCT_COPY_FILES += \
-    kernel/oneplus/sm8650/modules.systemdlkm_blocklist.msm.pineapple:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+    kernel/oneplus/sm8850/modules.systemdlkm_blocklist.msm.pineapple:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -474,7 +474,7 @@ endif
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/oplus/vintf/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
-DEVICE_FRAMEWORK_MANIFEST_FILE += device/oneplus/sm8650-common/vintf/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE += device/oneplus/sm8850-common/vintf/framework_manifest.xml
 DEVICE_MANIFEST_FILE := \
     $(AUDIO_HAL_DIR)/configs/common/manifest_non_qmaa.xml \
     $(AUDIO_HAL_DIR)/configs/common/manifest_non_qmaa_extn.xml \
@@ -514,4 +514,4 @@ PRODUCT_PACKAGES += \
     firmware_wlanmdsp.otaupdate_symlink
 
 # Inherit from the proprietary files makefile.
-$(call inherit-product, vendor/oneplus/sm8650-common/sm8650-common-vendor.mk)
+$(call inherit-product, vendor/oneplus/sm8850-common/sm8850-common-vendor.mk)
