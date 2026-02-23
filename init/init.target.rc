@@ -40,20 +40,12 @@ on init
     chown system system /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
     chmod 0660 /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
     start logd
-    mkdir /dev/cpuctl/general
-    copy_per_line /dev/cpuctl/tasks /dev/cpuctl/general/tasks
-    chown system system /dev/cpuctl/general
-    chown system system /dev/cpuctl/general/tasks
-    chmod 0644 /dev/cpuctl/general/tasks
-
-on early-init && property:ro.baseband=apq
-    setprop ro.radio.noril yes
 
 on early-fs
     start vold
 
 on fs
-    mount_all --early
+    mount_all /vendor/etc/fstab.qcom --early
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
     restorecon_recursive /mnt/vendor/persist
@@ -61,7 +53,7 @@ on fs
     mkdir /mnt/vendor/persist/data 0700 system system
 
 on late-fs
-    mount_all --late
+    mount_all /vendor/etc/fstab.qcom --late
 
 on post-fs-data
     mkdir /vendor/data/tombstones 0771 system system
@@ -151,18 +143,6 @@ service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
 on early-boot && property:persist.vendor.pcie.boot_option=*
     write /sys/bus/platform/devices/1c00000.qcom,pcie/debug/boot_option ${persist.vendor.pcie.boot_option}
     write /sys/bus/platform/devices/1c08000.qcom,pcie/debug/boot_option ${persist.vendor.pcie.boot_option}
-
-service fan_control_turn_on /vendor/bin/fan_service 1
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service fan_control_turn_off /vendor/bin/fan_service 0
-    class late_start
-    user root
-    disabled
-    oneshot
 
 on shutdown
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
