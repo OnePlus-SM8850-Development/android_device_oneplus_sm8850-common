@@ -12,6 +12,10 @@ on property:ro.boot.prjname=*
     # Display
     setprop ro.separate.soft ${ro.boot.prjname}
 
+on property:ro.boot.serialno=*
+    # Radio
+    setprop ro.vendor.oplus.radio.serialno ${ro.boot.serialno}
+
 on property:sys.boot_completed=1
     # Widevine
     copy /vendor/etc/oplus_Widevine_licenses.pfm /mnt/vendor/persist/data/pfm/licenses/oplus_Widevine_licenses.pfm
