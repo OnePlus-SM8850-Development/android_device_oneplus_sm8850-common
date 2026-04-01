@@ -509,6 +509,7 @@ subsystem mem_buf_vm
 # USB Dynamic Disable
 /sys/bus/platform/devices/a600000.ssusb	dynamic_disable	0220	root	usb
 /sys/bus/platform/devices/a600000.hsusb	dynamic_disable	0220	root	usb
+/sys/bus/platform/devices/4e00000.hsusb	dynamic_disable	0220	root	usb
 
 # USB autosuspend/wakeup settings
 /sys/bus/usb/devices/*      power/autosuspend          0660  system  usb
@@ -524,6 +525,7 @@ subsystem mem_buf_vm
 /sys/bus/platform/devices/a600000.ssusb    mode        0660  system  usb
 /sys/bus/platform/devices/a600000.hsusb    mode        0660  system  usb
 /sys/bus/platform/devices/4e00000.ssusb    mode        0660  system  usb
+/sys/bus/platform/devices/4e00000.hsusb    mode        0660  system  usb
 
 #Memory Offline
 /sys/devices/system/memory/memory* state    0660 system system
