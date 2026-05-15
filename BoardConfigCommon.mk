@@ -80,7 +80,6 @@ BOARD_BOOTCONFIG := \
     androidboot.vendor.qspa=true
 
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := sysctl.kernel.firmware_config.force_sysfs_fallback=1
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
