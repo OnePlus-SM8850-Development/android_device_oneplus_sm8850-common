@@ -288,36 +288,6 @@ vendor/etc/vintf/manifest/vendor.qti.hardware.dsp-service.xml
 vendor/lib64/vendor.qti.hardware.dsp-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.dsp@1.0.so
 
-# DSP modules
-vendor/lib64/rfs/dsp/libDLDPP_skel.so
-vendor/lib64/rfs/dsp/libHexlpQnnHtp.so
-vendor/lib64/rfs/dsp/libHexlpQnnSystem.so
-vendor/lib64/rfs/dsp/libVppFrcQnnHtp.so
-vendor/lib64/rfs/dsp/libapn_dsp_skel.so
-vendor/lib64/rfs/dsp/libbitml_nsp_81na_skel.so
-vendor/lib64/rfs/dsp/libbitml_nsp_skel.so
-vendor/lib64/rfs/dsp/libdspCV_skel.so
-vendor/lib64/rfs/dsp/libfastcvadsp.so
-vendor/lib64/rfs/dsp/libfastcvdsp_skel.so
-vendor/lib64/rfs/dsp/libhdr_skel.so
-vendor/lib64/rfs/dsp/libmobilenet_dsp_frc.so
-vendor/lib64/rfs/dsp/libmobilenet_dsp_frc_networks.so
-vendor/lib64/rfs/dsp/libnsp_ipc_cdsp_skel.so
-vendor/lib64/rfs/dsp/libnspextensioncopyprovider.so
-vendor/lib64/rfs/dsp/libnspextensionfrcprovider.so
-vendor/lib64/rfs/dsp/libnspextensiongenericqnnprovider.so
-vendor/lib64/rfs/dsp/libnspextensionsuperresolutionprovider.so
-vendor/lib64/rfs/dsp/libqsegnetengine_dsp_skel.so
-vendor/lib64/rfs/dsp/libscveT2T_skel.so
-vendor/lib64/rfs/dsp/libsvDescMatchImpl_dsp_skel.so
-vendor/lib64/rfs/dsp/libsvDescMatch_dsp.so
-vendor/lib64/rfs/dsp/libsvdsp.so
-vendor/lib64/rfs/dsp/libsvswdsp.so
-vendor/lib64/rfs/dsp/libsvswdsp_skel.so
-vendor/lib64/rfs/dsp/libvpp_frc.so
-vendor/lib64/rfs/dsp/libvpp_gfrc_networks.so
-vendor/lib64/rfs/dsp/libvpp_svc_skel.so
-
 # FASTCRC
 vendor/lib64/libfastcrc.so
 
