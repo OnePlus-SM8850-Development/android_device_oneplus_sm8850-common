@@ -455,6 +455,12 @@ service vendor.ss_ramdump /system/vendor/bin/subsystem_ramdump
     ioprio rt 4
     disabled
 
+service vendor.modem_crash_capture /vendor/bin/modem_crash_capture
+    class main
+    user system
+    group system log
+    disabled
+
 on property:ro.vendor.iocgrp.config=1
     mkdir /dev/blkio
     mount cgroup none /dev/blkio blkio
@@ -493,6 +499,12 @@ on property:persist.vendor.sys.rawdump_copy=1
 
 on property:persist.vendor.sys.rawdump_copy=0
     write /sys/kernel/dload/emmc_dload 0
+
+on property:persist.vendor.modem_crash_capture.enable=1
+    start vendor.modem_crash_capture
+
+on property:persist.vendor.modem_crash_capture.enable=0
+    stop vendor.modem_crash_capture
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
