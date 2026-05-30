@@ -498,6 +498,7 @@ PRODUCT_PACKAGES += \
 # Touch
 ifneq ($(TARGET_IS_TABLET),true)
 PRODUCT_PACKAGES += \
+    hbp-setup \
     vendor.lineage.touch-service.oplus
 
 $(call soong_config_set,OPLUS_LINEAGE_TOUCH_HAL,INCLUDE_DIR,$(LOCAL_PATH)/touch/include)
