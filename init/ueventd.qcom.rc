@@ -698,3 +698,10 @@ subsystem mem_buf_vm
 /dev/glinkpkt_lmcu_qsh_1_6         0666  system  system
 /dev/glinkpkt_lmcu_qsh_1_7         0666  system  system
 /dev/glinkpkt_lmcu_qsh_1_8         0666  system  system
+
+/dev/glinkpkt_lmcu_qsh_drc_1_0     0660  system  system
+/dev/glinkpkt_lmcu_qsh_drc_1_1     0660  system  system
+/dev/glinkpkt_lmcu_qsh_drc_1_2     0660  system  system
+/dev/glinkpkt_lmcu_qsh_drc_1_3     0660  system  system
+/dev/glinkpkt_lmcu_qsh_drc_1_4     0660  system  system
+/dev/glinkpkt_lmcu_qsh_drc_1_5     0660  system  system
