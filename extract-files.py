@@ -84,6 +84,8 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace(r'/\* (Huo\.Chen@SYSTEM\.RF, 2024/09/06, Add for ICC) \*/', r'# \1'),
     'product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml': blob_fixup()
         .regex_replace('/my_product', '/product'),
+    'system/framework/WfdCommon.jar': blob_fixup()
+        .apktool_patch('blob-patches/WfdCommon.patch'),
     'system_ext/bin/horae': blob_fixup()
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-21.12.so'),
     (
@@ -92,8 +94,8 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/etc/seccomp_policy/syshealthmon.policy'
     ): blob_fixup()
         .add_line_if_missing('lseek: 1'),
-    'system_ext/lib64/libwfdnative.so': blob_fixup()
-        .add_needed('libinput_shim.so'),
+    'system_ext/lib64/libwfdservice.so': blob_fixup()
+        .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
     'vendor/bin/vendor_modprobe.sh': blob_fixup()
         .regex_replace(r'\n.*OPLUS_FEATURE_WIFI_FTM[\s\S]*?OPLUS_FEATURE_WIFI_FTM.*\n', ''),
     (
