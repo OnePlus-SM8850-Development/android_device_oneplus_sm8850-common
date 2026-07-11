@@ -30,6 +30,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #=============================================================================
 
+if [ -f /sys/devices/soc0/soc_id ]; then
+	platformid=`cat /sys/devices/soc0/soc_id`
+fi
 rev=`cat /sys/devices/soc0/revision`
 
 # Configure RT parameters:
@@ -138,6 +141,7 @@ if [ -d /proc/sys/walt ]; then
 	else
 		echo 864000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
 	fi
+
 	echo 100 > /proc/sys/walt/input_boost/input_boost_ms
 
 	echo "walt" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
@@ -152,36 +156,47 @@ if [ -d /proc/sys/walt ]; then
 	echo 1 > /sys/devices/system/cpu/cpufreq/policy6/walt/pl
 
 	echo 2611200 90 > /sys/devices/system/cpu/cpufreq/policy0/walt/zone_max_util_pct
-
-	if [ $rev == "1.0" ] || [ $rev == "1.1" ]; then
-		echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/walt/rtg_boost_freq
+	
+	if [ $platformid == "722" ] || [ $platformid == "723" ]; then # Alana settings
+		echo 720000 > /sys/devices/system/cpu/cpufreq/policy0/walt/rtg_boost_freq
 		echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/walt/rtg_boost_freq
 		echo 1286400 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
-		echo 2438400 > /sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq
-		echo 8500000 8500000 8500000 8500000 8500000 8500000 8500000 8500000 > /proc/sys/walt/sched_util_busy_hyst_cpu_ns
-		echo 0 0 0 0 0 0 0 0 > /proc/sys/walt/sched_util_busy_hyst_cpu_util
+		echo 2438400 > /sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq	
 	else
-		echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/walt/rtg_boost_freq
-		echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/walt/rtg_boost_freq
-		echo 1286400 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
-		echo 2438400 > /sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq
+		if [ $rev == "1.0" ] || [ $rev == "1.1" ]; then
+			echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/walt/rtg_boost_freq
+			echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/walt/rtg_boost_freq
+			echo 1286400 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
+			echo 2438400 > /sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq
+			echo 8500000 8500000 8500000 8500000 8500000 8500000 8500000 8500000 > /proc/sys/walt/sched_util_busy_hyst_cpu_ns
+			echo 0 0 0 0 0 0 0 0 > /proc/sys/walt/sched_util_busy_hyst_cpu_util
+		else
+			echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/walt/rtg_boost_freq
+			echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/walt/rtg_boost_freq
+			echo 1286400 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
+			echo 2438400 > /sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq
+		fi
 	fi
-		# Disable hispeed_freq while cur_freq < 748800 (yangqixia@BSP.CPU, 2025/7/10)
-		echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_cond_freq
 else
 	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
 	echo 1 > /proc/sys/kernel/sched_pelt_multiplier
 fi
 
-if [ $rev == "1.0" ] || [ $rev == "1.1" ]; then
-	echo 614400 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-	echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
-	echo "0:614400 6:864000" > /data/vendor/perfd/default_scaling_min_freq
+if [ $platformid == "722" ] || [ $platformid == "723" ]; then # Alana settings
+		echo 720000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+		echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
+		echo "0:720000 6:864000" > /data/vendor/perfd/default_scaling_min_freq
 else
-	echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-	echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
-	echo "0:787200 6:864000" > /data/vendor/perfd/default_scaling_min_freq
+	if [ $rev == "1.0" ] || [ $rev == "1.1" ]; then
+		echo 614400 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+		echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
+		echo "0:614400 6:864000" > /data/vendor/perfd/default_scaling_min_freq
+	else
+		echo 787200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+		echo 864000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
+		echo "0:787200 6:864000" > /data/vendor/perfd/default_scaling_min_freq
+	fi
 fi
 
 # Reset the RT boost, which is 1024 (max) by default.
@@ -205,7 +220,6 @@ do
 	echo 4 > $llccbw/sample_ms
 	echo 80 > $llccbw/io_percent
 	echo 20 > $llccbw/hist_memory
-	echo 70 > $llccbw/second_ab_scale
 	echo 5 > $llccbw/hyst_length
 	echo 1 > $llccbw/idle_length
 	echo 30 > $llccbw/down_thres
@@ -291,19 +305,5 @@ case "$console_config" in
 		echo "Enable console config to $console_config"
 	;;
 esac
-
-# add for power cancel the freq limit when launcher launch
-echo 4608000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_max_freq
-
-# Yangqixia.Kernel.CPU add for 6+2 and all core are perf-core
-echo 1 > /proc/oplus_scheduler/sched_assist/silver_perf_core
-
-#config fg and top cpu shares
-echo 5120 > /dev/cpuctl/top-app/cpu.shares
-echo 4096 > /dev/cpuctl/foreground/cpu.shares
-
-#config sstop and ssfg cpu shares
-echo 5120 > /dev/cpuctl/sstop/cpu.shares
-echo 4096 > /dev/cpuctl/ssfg/cpu.shares
 
 setprop vendor.post_boot.parsed 1

@@ -55,7 +55,7 @@ if [ -d /proc/sys/walt ]; then
 	echo 30 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
 	echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
 	echo 6 > /sys/devices/system/cpu/cpu0/core_ctl/task_thres
-	echo 0 0 1 1 0 0 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
+	echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
 	echo 0xFF > /sys/devices/system/cpu/cpu0/core_ctl/nrrun_cpu_mask
 	echo 0x00 > /sys/devices/system/cpu/cpu0/core_ctl/nrrun_cpu_misfit_mask
 	echo 0x00 > /sys/devices/system/cpu/cpu0/core_ctl/assist_cpu_mask
@@ -76,9 +76,6 @@ if [ -d /proc/sys/walt ]; then
 	echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 	echo 1 > /sys/devices/system/cpu/cpu6/core_ctl/enable
 
-	#Disable big task rotation
-	echo 0 > /proc/sys/walt/sched_walt_rotate_big_tasks
-
 	# Configure Single Boost Thread
 	echo 0 > /proc/sys/walt/sched_sbt_delay_windows
 	echo 0x00 > /proc/sys/walt/sched_sbt_pause_cpus
@@ -97,6 +94,7 @@ if [ -d /proc/sys/walt ]; then
 	# By setting group upmigrate/downmigrate to 0, colocation is disabled.
 	echo 0 > /proc/sys/walt/sched_group_downmigrate
 	echo 0 > /proc/sys/walt/sched_group_upmigrate
+	echo 1 > /proc/sys/walt/sched_walt_rotate_big_tasks
 	echo 400000000 > /proc/sys/walt/sched_coloc_downmigrate_ns
 	echo 8500000 1000000 1000000 1000000 1000000 1000000 2000000 2000000 > /proc/sys/walt/sched_coloc_busy_hyst_cpu_ns
 	echo 255 > /proc/sys/walt/sched_coloc_busy_hysteresis_enable_cpus
@@ -119,7 +117,7 @@ if [ -d /proc/sys/walt ]; then
 	echo $gold_early_upmigrate > /proc/sys/walt/sched_early_upmigrate
 
 	# Enable Gold CPUs for pipeline
-	echo 176 > /proc/sys/walt/sched_pipeline_cpus
+	echo 76 > /proc/sys/walt/sched_pipeline_cpus
 	echo 1 > /proc/sys/walt/sched_pipeline_force_config
 
 	# set the threshold for low latency task boost feature which prioritize
@@ -278,16 +276,5 @@ case "$console_config" in
 		echo "Enable console config to $console_config"
 	;;
 esac
-
-# Daizeyu.Kernel.CPU add for 6+2 and all core are perf-core
-echo 1 > /proc/oplus_scheduler/sched_assist/silver_perf_core
-
-#config fg and top cpu shares
-echo 5120 > /dev/cpuctl/top-app/cpu.shares
-echo 4096 > /dev/cpuctl/foreground/cpu.shares
-
-#config sstop and ssfg cpu shares
-echo 5120 > /dev/cpuctl/sstop/cpu.shares
-echo 4096 > /dev/cpuctl/ssfg/cpu.shares
 
 setprop vendor.post_boot.parsed 1
