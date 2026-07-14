@@ -86,6 +86,12 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('/my_product', '/product'),
     'system_ext/bin/horae': blob_fixup()
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-21.12.so'),
+    (
+        'system_ext/etc/seccomp_policy/tcmd.policy',
+        'vendor/etc/seccomp_policy/qsap_qapeservice.policy',
+        'vendor/etc/seccomp_policy/syshealthmon.policy'
+    ): blob_fixup()
+        .add_line_if_missing('lseek: 1'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .add_needed('libinput_shim.so'),
     'vendor/bin/vendor_modprobe.sh': blob_fixup()
