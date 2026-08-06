@@ -520,3 +520,7 @@ vendor/etc/init/vendor.qti.hardware.soter-service.rc
 vendor/etc/vintf/manifest/vendor.qti.hardware.soter-service.xml
 vendor/lib64/hw/vendor.qti.hardware.soter-impl.so
 vendor/lib64/vendor.qti.hardware.soter-V1-ndk.so
+
+# Touch
+odm/bin/hw/vendor-oplus-hardware-touch-V2-hbp5-service
+odm/etc/init/vendor-oplus-hardware-touch-V2-hbp5-service.rc

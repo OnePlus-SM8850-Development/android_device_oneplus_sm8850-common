@@ -1029,10 +1029,8 @@ vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
 
 # Touch
-odm/bin/hw/vendor-oplus-hardware-touch-V2-hbp5-service
 odm/bin/touchDaemon
 odm/etc/init/init.touchDaemon.rc
-odm/etc/init/vendor-oplus-hardware-touch-V2-hbp5-service.rc
 odm/etc/vintf/manifest/manifest_touch_aidl.xml
 
 # Trusted Execution Environment connector
