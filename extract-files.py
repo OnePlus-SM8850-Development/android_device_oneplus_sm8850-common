@@ -101,6 +101,8 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service',
     ): blob_fixup()
         .replace_needed('android.hardware.media.c2-V1-ndk.so', 'android.hardware.media.c2-V2-ndk.so'),
+    'vendor/etc/perf/perfboostsconfig.xml': blob_fixup()
+        .regex_replace(r'Enable="false"', r'Enable="true"'),
     (
         'vendor/etc/media_codecs_canoe_sku3.xml',
         'vendor/etc/media_codecs_canoe_v2.xml',
