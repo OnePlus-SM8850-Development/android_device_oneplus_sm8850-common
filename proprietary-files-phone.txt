@@ -117,17 +117,8 @@ vendor/lib64/libqdi.so
 vendor/lib64/vendor.qti.hardware.embmsslaidl-V2-ndk.so
 
 # Data (IPACM)
-vendor/bin/ipacm
 vendor/bin/ipacm-diag
 vendor/etc/init/ipacm-diag.rc
-vendor/etc/init/ipacm.rc
-vendor/etc/vintf/manifest/vendor.qti.hardware.tetheroffload.service.xml
-vendor/etc/IPACM_Filter_cfg.xml
-vendor/etc/IPACM_cfg.xml
-vendor/lib64/libipanat.so
-vendor/lib64/libnetfilter_conntrack.so
-vendor/lib64/libnfnetlink.so
-vendor/lib64/liboffloadhal.so
 
 # DPM
 system_ext/bin/dpmd
