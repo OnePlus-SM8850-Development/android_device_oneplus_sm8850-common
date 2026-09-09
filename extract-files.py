@@ -39,12 +39,6 @@ lib_fixups: lib_fixups_user_type = {
         'libolc_vnd',
         'libosensenativeproxy_client',
         'libPanelChaplin',
-        'libpwirisfeature',
-        'vendor.pixelworks.hardware.display@1.0',
-        'vendor.pixelworks.hardware.display@1.1',
-        'vendor.pixelworks.hardware.display@1.2',
-        'vendor.pixelworks.hardware.feature@1.0',
-        'vendor.pixelworks.hardware.feature@1.1',
         'vendor.qti.ImsRtpService-V2-ndk',
         'vendor.qti.diaghal-V1-ndk',
         'vendor.qti.hardware.dpmaidlservice-V1-ndk',
@@ -78,7 +72,6 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libpowercallback.so',
         'vendor/lib64/libpowercore.so',
         'vendor/lib64/libpsmoptfeature.so',
-        'vendor/lib64/libsdmclient.so',
         'vendor/lib64/libstandbyfeature.so',
         'vendor/lib64/libvideooptfeature.so',
         'vendor/lib64/soundfx/libquasar.so',
@@ -124,19 +117,10 @@ blob_fixups: blob_fixups_user_type = {
     (
         'vendor/lib64/libcwb_qcom_aidl.so',
         'vendor/lib64/libhwcsensor.so',
-        'vendor/lib64/libsdmclient.so',
     ): blob_fixup()
         .replace_needed('vendor.qti.hardware.display.config-V11-ndk.so', 'vendor.qti.hardware.display.config-V13-ndk.so'),
-    (
-        'vendor/lib64/libpwirishalwrapper.so',
-        'vendor/lib64/libqcodec2_core.so',
-        'vendor/lib64/libsdmclient.so',
-    ): blob_fixup()
+    'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
-    'vendor/lib64/libpwirishalwrapper.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.composer3-V3-ndk.so', 'android.hardware.graphics.composer3-V4-ndk.so'),
-    'vendor/lib64/libsdmcore.so': blob_fixup()
-        .add_needed('libbase.so'),
     'vendor/usr/keylayout/gpio-keys.kl': blob_fixup()
         .add_line_if_missing('key 735   ASSIST'),
 }  # fmt: skip
