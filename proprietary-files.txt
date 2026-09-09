@@ -13,10 +13,8 @@ vendor/etc/acdbdata/wnr_models/wind_filter__1.0__48k__2ch__16b__eai_5.5.eai
 
 # ADSP
 vendor/bin/adsprpcd
-vendor/bin/audioadsprpcd
 vendor/bin/loadalgo
 vendor/etc/init/vendor.qti.adsprpc-guestos-service.rc
-vendor/etc/init/vendor.qti.audio-adsprpc-service.rc
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
 vendor/lib64/libloadalgo_stub.so
@@ -32,8 +30,6 @@ vendor/lib/rfsa/adsp/nearby.napp_header
 vendor/lib/rfsa/adsp/nearby.so
 
 # Audio
-vendor/bin/hw/audiohalservice.qti
-vendor/etc/init/audiohalservice_qti.rc
 vendor/etc/models/acd/conv_detection.eai
 vendor/etc/models/acd/environment.eai
 vendor/etc/models/acd/event.eai
@@ -43,86 +39,38 @@ vendor/etc/models/mma/nvd_enpu_off.bin
 vendor/etc/models/mma/nvd_enpu_on.bin
 vendor/etc/models/mma/vad_enpu_off.bin
 vendor/etc/models/mma/vad_enpu_on.bin
-vendor/etc/vintf/manifest/Manifest_IAGM.xml
 vendor/etc/vintf/manifest/Manifest_IListenSoundModel.xml
-vendor/etc/vintf/manifest/Manifest_IPAL.xml
-vendor/etc/vintf/manifest/Manifest_IPALEventNotifier.xml
-vendor/etc/vintf/manifest/audioeffectservice_qti.xml
-vendor/etc/vintf/manifest/manifest_audiocorehal_default.xml
 vendor/etc/vintf/manifest/qasr_vintf.xml
-vendor/etc/vintf/manifest/soundtrigger.qti.xml
-vendor/lib64/hw/libaudiocorehal.default.so;DISABLE_DEPS
+vendor/lib64/hw/libaudiocorehal.default.so;DISABLE_DEPS;REQUIRED=manifest_audiocorehal_default.xml
 vendor/lib64/hw/libaudiocorehal.qti.so;DISABLE_DEPS
-vendor/lib64/hw/libaudioeffecthal.qti.so;DISABLE_DEPS
-vendor/lib64/hw/libsoundtriggerhal.qti.so
-vendor/lib64/customva_plugin.so
-vendor/lib64/hotword_plugin.so
+vendor/lib64/hw/libaudioeffecthal.qti.so;DISABLE_DEPS;REQUIRED=audioeffectservice_qti.xml
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libEvrcSwCodec.so
 vendor/lib64/libFlacSwDec.so
 vendor/lib64/libPeripheralStateUtils.so
 vendor/lib64/libadm.so
-vendor/lib64/libagm.so
-vendor/lib64/libagm_compress_plugin.so
-vendor/lib64/libagm_mixer_plugin.so
-vendor/lib64/libagm_pcm_plugin.so
-vendor/lib64/libagmclient.so
-vendor/lib64/libagmipcservice.so
-vendor/lib64/libagmmixer.so
-vendor/lib64/libar-acdb.so
-vendor/lib64/libar-gpr.so
-vendor/lib64/libar-gsl.so
 vendor/lib64/libar-pal.so
 vendor/lib64/libarmemlog.so
-vendor/lib64/libats.so
 vendor/lib64/libaudio_log_utils.so
-vendor/lib64/libaudiochargerlistener.so
 vendor/lib64/libaudiofeaturestats.so
-vendor/lib64/libaudioplatformconverter.qti.so;DISABLE_DEPS
 vendor/lib64/libaudioserviceexampleimpl.so;DISABLE_DEPS
-vendor/lib64/libbatterylistener.so
 vendor/lib64/libcapiv2svacnnvendor.so
 vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2udk7vendor.so
 vendor/lib64/libcapiv2uvvendor.so
 vendor/lib64/libdev_bt.so
-vendor/lib64/libdev_display.so
-vendor/lib64/libdev_dummy.so
-vendor/lib64/libdev_ec_ref.so
-vendor/lib64/libdev_ext_ec.so
-vendor/lib64/libdev_fm.so
-vendor/lib64/libdev_handset.so
-vendor/lib64/libdev_handset_mic.so
-vendor/lib64/libdev_handset_va.so
-vendor/lib64/libdev_haptics.so
-vendor/lib64/libdev_headphone.so
-vendor/lib64/libdev_headset_mic.so
-vendor/lib64/libdev_headset_va.so
-vendor/lib64/libdev_proxy.so
 vendor/lib64/libdev_speaker.so
-vendor/lib64/libdev_speaker_mic.so
-vendor/lib64/libdev_ultrasound.so
-vendor/lib64/libdev_usb.so
 vendor/lib64/libdsd2pcm.so
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
-vendor/lib64/libfmpal.so
-vendor/lib64/libhfp_pal.so
 vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/liblistensoundmodelaidl.so
-vendor/lib64/liblx-ar_util.so
-vendor/lib64/liblx-osal.so
 vendor/lib64/libmcs.so
 vendor/lib64/libopluspal.so
 vendor/lib64/libpal_net_if.so
-vendor/lib64/libpal_sounddose.so
-vendor/lib64/libpalclient.so
-vendor/lib64/libpaleventnotifier.so
-vendor/lib64/libpalipcservice.so
 vendor/lib64/libqasr.so
 vendor/lib64/libqtigefar.so;DISABLE_DEPS
-vendor/lib64/libsession_agm.so
 vendor/lib64/libsession_ar.so
 vendor/lib64/libsession_compress.so
 vendor/lib64/libsession_compress_config.so
@@ -130,30 +78,11 @@ vendor/lib64/libsession_pcm.so
 vendor/lib64/libsession_pcm_config.so
 vendor/lib64/libsession_voice.so
 vendor/lib64/libsession_voice_config.so
-vendor/lib64/libsndcardparser.so
-vendor/lib64/libstream_acd.so
-vendor/lib64/libstream_asr.so
-vendor/lib64/libstream_calltranslation.so
-vendor/lib64/libstream_common.so
-vendor/lib64/libstream_commonproxy.so
 vendor/lib64/libstream_compress.so
-vendor/lib64/libstream_contextproxy.so
-vendor/lib64/libstream_dummy.so
-vendor/lib64/libstream_haptics.so
-vendor/lib64/libstream_incall.so
-vendor/lib64/libstream_nontunnel.so
 vendor/lib64/libstream_pcm.so
-vendor/lib64/libstream_sensorpcmdata.so
-vendor/lib64/libstream_sensorrenderer.so
-vendor/lib64/libstream_soundtrigger.so
-vendor/lib64/libstream_ultrasound.so
 vendor/lib64/libtensorflowlite_c_qcom.so
-vendor/lib64/libvui_utils.so
-vendor/lib64/sva_plugin.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModelAidl-V2-ndk.so
-vendor/lib64/vendor.qti.hardware.agm-V1-ndk.so
-vendor/lib64/vendor.qti.hardware.pal-V1-ndk.so
 vendor/lib64/vendor.qti.hardware.qasr-V3-ndk.so
 
 # Audio configs
@@ -167,11 +96,7 @@ vendor/etc/card-defs.xml
 vendor/etc/usecaseKvManager.xml
 
 # Audio FX modules
-vendor/lib64/soundfx/libqcompostprocbundle.so
-vendor/lib64/soundfx/libqcomvisualizer.so
-vendor/lib64/soundfx/libqcomvoiceprocessing.so
 vendor/lib64/soundfx/libquasar.so
-vendor/lib64/soundfx/libvolumelistener.so
 
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@aidl-service-qti
@@ -180,9 +105,6 @@ vendor/etc/vintf/manifest/bttpi-saidl.xml
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib64/hw/android.hardware.bluetooth@aidl-impl-qti.so
 vendor/lib64/hw/vendor.qti.hardware.bttpi-impl.so
-vendor/lib64/lib_bt_aptx.so
-vendor/lib64/lib_bt_ble.so
-vendor/lib64/lib_bt_bundle.so
 vendor/lib64/libbtnv.so
 vendor/lib64/libsoc_helper.so
 vendor/lib64/vendor.qti.hardware.bttpi-V3-ndk.so
@@ -290,50 +212,22 @@ vendor/lib64/libhdrdynamicootf.so
 vendor/lib64/libhdrvivid.so
 
 # Display (HWC)
-vendor/bin/hw/vendor.qti.hardware.display.allocator-service
-vendor/bin/hw/vendor.qti.hardware.display.composer-service
-vendor/bin/hw/vendor.qti.hardware.display.demura-service
-vendor/bin/init.qti.display_boot.sh
 vendor/bin/qdcmss
-vendor/etc/init/init.qti.display_boot.rc
 vendor/etc/init/qdcmss.rc
-vendor/etc/init/vendor.qti.hardware.display.allocator-service.rc
-vendor/etc/init/vendor.qti.hardware.display.composer-service.rc
-vendor/etc/init/vendor.qti.hardware.display.demura-service.rc
-vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service.xml
-vendor/etc/vintf/manifest/vendor.qti.hardware.display.composer-service3_v4.xml
-vendor/etc/vintf/manifest/vendor.qti.hardware.display.demura-service.xml
 vendor/etc/snapdragon_color_libs_config.xml
-vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so
 vendor/lib64/libap_uir_dimming.so
 vendor/lib64/libdemura_oem_plugin.so
-vendor/lib64/libdisplayconfig.qti.so
-vendor/lib64/libdisplaydebug.so
 vendor/lib64/libdmap_consent_sdk.so
 vendor/lib64/libdpp_manager.so
 vendor/lib64/libdpps.so
-vendor/lib64/libdrmutils.so
-vendor/lib64/libfilefinder.so
 vendor/lib64/libgame_enhance.so
-vendor/lib64/libgpu_tonemapper.so
-vendor/lib64/libgralloc.qti.so
-vendor/lib64/libgralloccore.so
-vendor/lib64/libgrallocutils.so
-vendor/lib64/libhistogram.so
 vendor/lib64/libhwcsensor.so
 vendor/lib64/libmemutils.so
-vendor/lib64/libqdMetaData.so
 vendor/lib64/libqdcm-algo.so
 vendor/lib64/libqdcm-json-mode-parser.so
 vendor/lib64/libqdcm-mode-parser.so
-vendor/lib64/libqdutils.so
-vendor/lib64/libqservice.so
-vendor/lib64/libsdmcore.so
-vendor/lib64/libsdmdal.so
-vendor/lib64/libsdmutils.so
 vendor/lib64/libsnapdragoncolor-manager.so
 vendor/lib64/libsnapdragoncolor-qdcm.so
-vendor/lib64/vendor.qti.hardware.display.snapalloc-impl.so
 vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0.so
 
 # Display (Pixelworks)
@@ -382,9 +276,7 @@ vendor/etc/display/thermallevel_to_fps.xml
 vendor/etc/display/ubwc_alignments.json
 vendor/etc/display/video_alignments.json
 vendor/etc/display/vtdr6130_amoled_cmd_mode_dsi_visionox_panel_with_DSC.json
-vendor/etc/vintf/manifest/mapper.qti.xml
 vendor/etc/clstc_config_library.xml
-vendor/lib64/hw/mapper.qti.so
 vendor/lib64/libbacklight-calib.so
 vendor/lib64/libclstc_algorithm_adapter.so
 vendor/lib64/libclstc_gcp_adapter.so
@@ -399,12 +291,10 @@ vendor/lib64/libintervmipc.so
 vendor/lib64/libqrtrclient.so
 vendor/lib64/libqseed3.so
 vendor/lib64/librcmask.so
-vendor/lib64/libsdedrm.so
 vendor/lib64/libsdm-brightnessaware-parser.so
 vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-colormgr-algo.so
 vendor/lib64/libsdm-disp-vndapis.so
-vendor/lib64/libsdmclient.so
 vendor/lib64/libsdmextension.so
 vendor/lib64/libtestutils.so
 vendor/lib64/libtinyxml2_1.so
@@ -466,7 +356,6 @@ vendor/lib64/libkernelmanager.so
 vendor/lib64/libllvm-glnext.so
 vendor/lib64/libllvm-qcom.so
 vendor/lib64/libllvm-qgl.so
-vendor/lib64/libmapperutils.so
 
 # Graphics (Vulkan)
 vendor/lib64/hw/vulkan.adreno.so

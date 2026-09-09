@@ -42,22 +42,75 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.r_submix.default \
     audio.usb.default \
+    audioadsprpcd \
+    audiohalservice.qti \
+    customva_plugin \
+    hotword_plugin \
+    libagm_compress_plugin \
+    libagm_mixer_plugin \
+    libagm_pcm_plugin \
+    libagmipcservice \
     libalsautilsv2.vendor \
+    libaudiochargerlistener \
+    libaudioplatformconverter.qti \
     libaudioutils_shim \
     libbatterylistener \
     libbluetooth_audio_session_aidl_shim \
     libbundleaidl \
+    libdev_display \
+    libdev_dummy \
+    libdev_ec_ref \
+    libdev_ext_ec \
+    libdev_fm \
+    libdev_handset \
+    libdev_handset_mic \
+    libdev_handset_va \
+    libdev_haptics \
+    libdev_headphone \
+    libdev_headset_mic \
+    libdev_headset_va \
+    libdev_proxy \
+    libdev_speaker_mic \
+    libdev_ultrasound \
+    libdev_usb \
     libdownmixaidl \
     libdynamicsprocessingaidl \
+    libfmpal \
+    libhfp_pal \
     libloudnessenhanceraidl \
     libmediautils_vendor.vendor \
     libmemunreachable.vendor \
+    libpal_sounddose \
+    libpalipcservice \
     libreverbaidl \
+    libsession_agm \
+    libsoundtriggerhal.qti \
+    libstream_acd \
+    libstream_asr \
+    libstream_calltranslation \
+    libstream_common \
+    libstream_commonproxy \
+    libstream_contextproxy \
+    libstream_dummy \
+    libstream_haptics \
+    libstream_incall \
+    libstream_nontunnel \
+    libstream_sensorpcmdata \
+    libstream_sensorrenderer \
+    libstream_soundtrigger \
+    libstream_ultrasound \
     libtinyalsav2 \
     libtinycompress \
     libvisualizeraidl \
     qti-audio-types-aidl-V1-ndk.vendor \
-    qtiaudiohalvendorextn
+    qtiaudiohalvendorextn \
+    sva_plugin
+
+$(call soong_config_set,qtiaudio,extra_device_virtuals,4)
+$(call soong_config_set,qtiaudio,extra_out_devices,1)
+$(call soong_config_set,qtiaudio,extra_in_devices,1)
+$(call soong_config_set_bool,qtiaudio,nonvirtual_stream_isinitialized,true)
+$(call soong_config_set_bool,qtiaudio,no_stream_mixer_event_callback,true)
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8850/audio/primary-hal
 CONFIG_HAL_SRC_DIR := $(AUDIO_HAL_DIR)/configs/canoe
@@ -86,7 +139,10 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio-impl
+    android.hardware.bluetooth.audio-impl \
+    lib_bt_aptx \
+    lib_bt_ble \
+    lib_bt_bundle
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
@@ -122,6 +178,17 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # Display
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.mapper@4.0-impl-qti-display \
+    init.qti.display_boot.rc \
+    init.qti.display_boot.sh \
+    libfilefinder \
+    mapper.qti \
+    vendor.qti.hardware.display.allocator-service \
+    vendor.qti.hardware.display.composer-service \
+    vendor.qti.hardware.display.demura-service \
+    vendor.qti.hardware.display.snapalloc-impl
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
@@ -208,10 +275,10 @@ $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_oplus)
 
 # IPACM
 ifneq ($(TARGET_IS_TABLET),true)
-#PRODUCT_PACKAGES += \
-#    ipacm \
-#    IPACM_cfg.xml \
-#    IPACM_Filter_cfg.xml
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml \
+    IPACM_Filter_cfg.xml
 endif
 
 # IR
