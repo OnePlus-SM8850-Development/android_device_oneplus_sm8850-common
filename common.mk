@@ -350,6 +350,9 @@ PRODUCT_PACKAGES += \
     qspa_vendor.rc \
     vendor.qti.qspa-service
 
+# RFS
+$(call inherit-product, hardware/oplus/rfs/rfs.mk)
+
 # SecureElement
 ifneq ($(TARGET_IS_TABLET),true)
 PRODUCT_PACKAGES += \
