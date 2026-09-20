@@ -226,8 +226,8 @@ endif
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
 
-#PRODUCT_COPY_FILES += \
-#    kernel/oneplus/sm8850/modules.systemdlkm_blocklist.msm.pineapple:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+PRODUCT_COPY_FILES += \
+    kernel/platform/kernel-6.12/vendor/oneplus/kernel/modules-lists/modules.systemdlkm_blocklist.msm.canoe:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 
 # Keymint
 PRODUCT_PACKAGES += \
