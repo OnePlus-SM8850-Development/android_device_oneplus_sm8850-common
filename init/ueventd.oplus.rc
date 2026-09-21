@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022-2024 The LineageOS Project
+# Copyright (C) 2022-2026 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -8,7 +8,7 @@ subsystem adf
     devname uevent_devname
 
 # Camera
-/dev/explorer_preisp                           0660    cameraserver    camera
+/dev/camera_extension_monitor                  0660    cameraserver    camera
 
 # Charger
 /sys/class/oplus_chg/*  mmi_charging_enable    0660    system  system

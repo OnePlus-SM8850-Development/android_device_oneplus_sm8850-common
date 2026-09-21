@@ -62,13 +62,12 @@
 # Firmware directory Path
 # Below macro will be read by uevent and path will
 # be added to search path for firmware loading
-# ifndef OPLUS_FEATURE_WIFI_BDF
-# fangzhijun@CONNECTIVITY.WIFI.HARDWARE.BDF.5719240 , 2023/06/13,
-# Modify for: multi projects using different bdf, adding persist into firmware_directories
-# firmware_directories /vendor/firmware_mnt/image/ /vendor/soccp_firmware/image/ /vendor/dcp_firmware/image/
-# else /* OPLUS_FEATURE_WIFI_BDF */
+#ifndef OPLUS_FEATURE_WIFI_SWITCH
+#lixiong2@CONNECTIVITY.WIFI.HARDWARE.SWITCH.9276185, add for 8850
+#firmware_directories /vendor/firmware_mnt/image/ /vendor/soccp_firmware/image/ /vendor/dcp_firmware/image/
+#else
 firmware_directories /mnt/vendor/persist/copy/ /odm/etc/wifi/ /mnt/vendor/persist/ /vendor/firmware_mnt/image/ /vendor/soccp_firmware/image/ /vendor/dcp_firmware/image/
-# endif /* OPLUS_FEATURE_WIFI_BDF */
+#endif
 
 subsystem dma_heap
     devname uevent_devpath

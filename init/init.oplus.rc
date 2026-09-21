@@ -1,68 +1,18 @@
 #
-# Copyright (C) 2022-2025 The LineageOS Project
+# Copyright (C) 2022-2026 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-import /odm/etc/init/hw/init.oplus.display.rc
-
-on fs
-    # Update touchpanel firmware in case we ship newer firmware in /odm
-    write /proc/touchpanel/tp_fw_update 0
-
-on boot
-    # Display
-    chmod 0000 /sys/kernel/oplus_display/hbm
-
 on post-fs-data
-    # ADSP ramdump
-    mkdir /data/vendor/mmdump 0777 system system
-    chmod 0777 /data/vendor/mmdump
-    mkdir /data/vendor/mmdump/adsp 0777 system system
-    chmod 0777 /data/vendor/mmdump/adsp
-
     # Audio HAL feedback
     chown media media /proc/mm_fb
-
-    # Camera
-    mkdir /mnt/vendor/persist 0771 root system
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/dual_calibration/stereoParams.bin
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/front_dual_calibration/stereoParams.bin
-    chmod 0666 /mnt/vendor/persist/camera/dual_calibration/stereoParams.bin
-    chmod 0666 /mnt/vendor/persist/camera/front_dual_calibration/stereoParams.bin
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/spectrum_cali_data
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/spectrum_test_data
-    chmod 0666 /mnt/vendor/persist/camera/spectrum_cali_data
-    chmod 0666 /mnt/vendor/persist/camera/spectrum_test_data
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/spectrum_sn.json
-    chown cameraserver cameraserver /mnt/vendor/persist/camera/cm_tcs3449_*
-    chmod 0666 /mnt/vendor/persist/camera/spectrum_sn.json
-    chmod 0666 /mnt/vendor/persist/camera/cm_tcs3449_*
-    mkdir /data/system/camera_rus 0777 cameraserver  cameraserver
-    chown system system /sys/kernel/ois_control/dump_registers
 
 on property:ro.boot.prjname=*
     # Display
     setprop ro.separate.soft ${ro.boot.prjname}
 
 on property:sys.boot_completed=1
-    # Network
-    copy /vendor/etc/O_STX_platform_license.pfm /mnt/vendor/persist/data/pfm/licenses/O_STX_platform_license.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/O_STX_platform_license.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/O_STX_platform_license.pfm
-
-    copy /odm/etc/oem_stx_platform_license.pfm /mnt/vendor/persist/data/pfm/licenses/oem_stx_platform_license.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/oem_stx_platform_license.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/oem_stx_platform_license.pfm
-
-    copy /vendor/etc/O_TDD-Bypass_platform_license.pfm /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_platform_license.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_platform_license.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_platform_license.pfm
-
-    copy /vendor/etc/O_TDD-Bypass_SM7675_platform_license.pfm /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_SM7675_platform_license.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_SM7675_platform_license.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/O_TDD-Bypass_SM7675_platform_license.pfm
-
     # Widevine
     copy /vendor/etc/oplus_Widevine_licenses.pfm /mnt/vendor/persist/data/pfm/licenses/oplus_Widevine_licenses.pfm
     chmod 0600 /mnt/vendor/persist/data/pfm/licenses/oplus_Widevine_licenses.pfm
