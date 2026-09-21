@@ -5,19 +5,10 @@ ro.oplus.image.my_engineering.type=release
 ro.vendor.qti.va_odm.support=1
 sys.oplus_ftm_mode=997
 
-# Bluetooth
-persist.vendor.bluetooth.modem_nv_support=true
-
-# Camera
-ro.hardware.camera=oemlayer
-
 # Radio
-persist.vendor.radio.force_on_dc=true
-persist.vendor.radio.mdccbsize=164
 persist.vendor.radio.virtualcomm=1
 ro.sys.reserve.integrate=true
-ro.vendor.oplus.radio.project=1
-ro.vendor.oplus.radio.sar_regionmark=FCC
+ro.vendor.oplus.radio.carrier_detect_mode=1
 
 # SVN
-ro.build.version.svn=56
+ro.build.version.svn=51

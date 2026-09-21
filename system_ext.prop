@@ -1,18 +1,17 @@
 # Audio
 audio.sys.mute.latency.factor=2
-audio.sys.noisy.broadcast.delay=600
+audio.sys.noisy.broadcast.delay=500
 audio.sys.offload.pstimeout.secs=3
-persist.audio.fluence.speaker=true
-persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicecomm=true
-persist.audio.fluence.voicerec=false
 qcom.hw.aac.encoder=true
 ro.audio.asyncdump.support=1
+ro.audio.ihaladaptervendorextension_enabled=true
+ro.oplus.audio.aidl_volume=true
 tunnel.audio.encode=true
 use.voice.path.for.pcm.voip=true
 
 # Bluetooth
 bluetooth.leaudio.dual_bidirection_swb.supported=true
+persist.bluetooth.ble.bg_cn.ctrl.mode=1
 persist.bluetooth.bqr.choppy_threshold=1,1
 persist.bluetooth.bqr.event_mask=0x8004001E
 persist.bluetooth.bqr.min_interval_ms=6000
@@ -23,13 +22,13 @@ persist.bluetooth.snooplogfilter.profiles.map=fullfilter
 persist.bluetooth.snooplogfilter.profiles.pbap=fullfilter
 persist.bluetooth.snooplogfilter.profiles.rfcomm.enabled=true
 persist.vendor.btstack.enable.lpa=true
+ro.bluetooth.finder.supported=true
 ro.bluetooth.leaudio_offload.supported=true
 
 # CNE
 persist.vendor.cne.feature=1
 
 # Display
-debug.sf.enable_hwc_vds=1
 sys.brightness.disable_gamma_conversion=true
 
 # DPM
@@ -50,7 +49,6 @@ persist.vendor.ims.vt.enableadb=3
 
 # Media
 media.aac_51_output_enabled=true
-media.stagefright.audio.deep=false
 media.stagefright.enable-aac=true
 media.stagefright.enable-fma2dp=true
 media.stagefright.enable-http=true
@@ -74,11 +72,11 @@ persist.data.df.ul_mode=5
 persist.data.wda.enable=true
 persist.rmnet.data.enable=true
 persist.vendor.data.mode=concurrent
+persist.vendor.data.mutualex.mode=disabled
 
 # Radio
 persist.oplus.qspa.modem=enabled
 persist.radio.hvolte.enable=1
-persist.vendor.radio.poweron_opt=1
 ril.subscription.types=NV,RUIM
 ro.telephony.sim_slots.count=2
 telephony.active_modems.max_count=2

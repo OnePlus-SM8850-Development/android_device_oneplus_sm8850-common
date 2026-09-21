@@ -48,13 +48,6 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.qti.kernel.rc",
-    src: "init.qti.kernel.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "init.target.rc",
     src: "init.target.rc",
     sub_dir: "init/hw",
@@ -82,26 +75,44 @@ sh_binary {
 }
 
 sh_binary {
+    name: "init.kernel.post_boot-alor_default_6_2.sh",
+    src: "init.kernel.post_boot-alor_default_6_2.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_5_1.sh",
+    src: "init.kernel.post_boot-canoe_5_1.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_5_2.sh",
+    src: "init.kernel.post_boot-canoe_5_2.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_6_1.sh",
+    src: "init.kernel.post_boot-canoe_6_1.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_default_6_2.sh",
+    src: "init.kernel.post_boot-canoe_default_6_2.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-memory.sh",
+    src: "init.kernel.post_boot-memory.sh",
+    vendor: true,
+}
+
+sh_binary {
     name: "init.kernel.post_boot.sh",
     src: "init.kernel.post_boot.sh",
-    vendor: true,
-}
-
-sh_binary {
-    name: "init.kernel.post_boot-cliffs_default_3_4_1.sh",
-    src: "init.kernel.post_boot-cliffs_default_3_4_1.sh",
-    vendor: true,
-}
-
-sh_binary {
-    name: "init.kernel.post_boot-pineapple.sh",
-    src: "init.kernel.post_boot-pineapple.sh",
-    vendor: true,
-}
-
-sh_binary {
-    name: "init.kernel.post_boot-pineapple_default_2_3_2_1.sh",
-    src: "init.kernel.post_boot-pineapple_default_2_3_2_1.sh",
     vendor: true,
 }
 

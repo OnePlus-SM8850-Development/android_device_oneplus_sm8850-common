@@ -2867,6 +2867,18 @@
     <carrier_config mcc="302" mnc="610">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
         <int name="ims_conference_size_limit_int" value="5" />
+        <int-array name="disable_change_status_to_retry_sms_rp_error_cause_int_array" num="10">
+            <item value="1" />
+            <item value="10" />
+            <item value="21" />
+            <item value="28" />
+            <item value="29" />
+            <item value="30" />
+            <item value="42" />
+            <item value="69" />
+            <item value="96" />
+            <item value="111" />
+        </int-array>
     </carrier_config>
     <carrier_config mcc="302" mnc="370">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
@@ -2875,6 +2887,18 @@
     <carrier_config mcc="302" mnc="690">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
         <int name="ims_conference_size_limit_int" value="5" />
+        <int-array name="disable_change_status_to_retry_sms_rp_error_cause_int_array" num="10">
+            <item value="1" />
+            <item value="10" />
+            <item value="21" />
+            <item value="28" />
+            <item value="29" />
+            <item value="30" />
+            <item value="42" />
+            <item value="69" />
+            <item value="96" />
+            <item value="111" />
+        </int-array>
     </carrier_config>
     <carrier_config mcc="302" mnc="880">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
@@ -2883,10 +2907,34 @@
     <carrier_config mcc="302" mnc="630">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
         <int name="ims_conference_size_limit_int" value="5" />
+        <int-array name="disable_change_status_to_retry_sms_rp_error_cause_int_array" num="10">
+            <item value="1" />
+            <item value="10" />
+            <item value="21" />
+            <item value="28" />
+            <item value="29" />
+            <item value="30" />
+            <item value="42" />
+            <item value="69" />
+            <item value="96" />
+            <item value="111" />
+        </int-array>
     </carrier_config>
     <carrier_config mcc="302" mnc="640">
         <boolean name="is_ims_conference_size_enforced_bool" value="true" />
         <int name="ims_conference_size_limit_int" value="5" />
+        <int-array name="disable_change_status_to_retry_sms_rp_error_cause_int_array" num="10">
+            <item value="1" />
+            <item value="10" />
+            <item value="21" />
+            <item value="28" />
+            <item value="29" />
+            <item value="30" />
+            <item value="42" />
+            <item value="69" />
+            <item value="96" />
+            <item value="111" />
+        </int-array>
     </carrier_config>
     <carrier_config mcc="308" mnc="01">
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
